@@ -8,6 +8,7 @@ exports.getUserById = async (id) => {
 
 exports.getUsers = async () => {
     const result = await db.query('SELECT * FROM Usuario');
+    console.log(result.rows); 
     return result.rows;
 };
 

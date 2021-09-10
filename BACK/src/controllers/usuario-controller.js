@@ -8,6 +8,7 @@ module.exports = {
 
     getUsers: async (req, res) => {
         await usuarioRepository.getUsers().then(result => res.json(result));
+       
     },
 
     create: async (req, res) => {
