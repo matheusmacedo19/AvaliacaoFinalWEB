@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const user = require('../Controllers/usuario-controller');
 const produto = require('../Controllers/produto-controller');
+const upload = require("../services/multerConfig");
+
 
 //USUARIO
 router.get("/usuarios/", user.getUsers);
@@ -13,9 +15,10 @@ router.delete("/usuario/:id", user.removeUserById)
 //PRODUTO
 router.get("/produtos", produto.getProducts);
 router.get("/produto/:id", produto.getProductById);
-router.post("/produto/", produto.create);
+router.post("/produto/", upload.single('avatar'), produto.create);
 router.put("/produto/:id", produto.updateProductById);
 router.delete("/produto/:id", produto.removeProductById)
+
 
 
 module.exports = router;

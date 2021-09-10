@@ -15,6 +15,7 @@ exports.create = async (usuario) => {
     
     const result = await db.query('INSERT INTO Usuario (nome, endereco, email, senha, saldo) VALUES ($1, $2, $3, $4, $5) RETURNING *;', 
     [usuario.nome, usuario.endereco, usuario.email, usuario.senha, usuario.saldo]);
+  
     return result.rows[0];
 };
 

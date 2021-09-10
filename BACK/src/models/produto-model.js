@@ -1,6 +1,5 @@
 module.exports = class Produto {
-    constructor(id, usuarioId, nome, descricao, foto) {
-        this.id = id;
+    constructor(usuarioId, nome, descricao, foto) {
         this.usuarioId = usuarioId;
         this.nome = nome;
         this.descricao = descricao;
