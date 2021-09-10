@@ -22,7 +22,7 @@ exports.create = async (usuario) => {
 exports.updateUserById = async (usuario) => {
     
     const result = await db.query('UPDATE Usuario SET nome = $1, endereco= $2, email = $3, senha = $4, saldo = $5 WHERE usuarioId = $6 RETURNING *;', 
-    [usuario.nome,usuario.endereco, usuario.email, usuario.senha, usuario.saldo, usuario.id]);
+    [usuario.nome,usuario.endereco, usuario.email, usuario.senha, usuario.saldo, usuario.usuarioId]);
 
     return result.rows[0]
 };

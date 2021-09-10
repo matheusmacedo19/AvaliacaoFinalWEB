@@ -19,6 +19,7 @@ router.post("/produto/", upload.single('avatar'), produto.create);
 router.put("/produto/:id", produto.updateProductById);
 router.delete("/produto/:id", produto.removeProductById)
 
+//TROCA
 
 
 module.exports = router;

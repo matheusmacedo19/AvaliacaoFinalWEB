@@ -12,7 +12,7 @@ module.exports = {
 
     create: async (req, res) => {
         let usuario = new Usuario(req.body.nome, req.body.endereco, req.body.email, req.body.senha, req.body.saldo);
-        console.log(usuario);
+        
         await usuarioRepository.create(usuario);
 
 

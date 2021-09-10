@@ -21,7 +21,7 @@ exports.create = async (produto) => {
 exports.updateProductById = async (produto) => {
     
     const result = await db.query('UPDATE Produto SET usuarioId = $1, nome= $2, descricao = $3, foto = $4 WHERE produtoId = $5 RETURNING *;', 
-    [produto.usuarioId, produto.nome, produto.descricao, produto.foto, produto.Id]);
+    [produto.usuarioId, produto.nome, produto.descricao, produto.foto, produto.produtoId]);
 
     return result.rows[0]
 };

@@ -18,7 +18,7 @@ async function createTables() {
         );
 
     await client.query(
-         "CREATE TABLE Historico(historicoId serial PRIMARY KEY UNIQUE NOT NULL, usuarioId BIGINT NOT NULL, listaTroca VARCHAR(MAX) NOT NULL, FOREIGN KEY (usuarioId) REFERENCES Usuario(usuarioId) ON DELETE CASCADE)"
+         "CREATE TABLE Historico(historicoId serial PRIMARY KEY UNIQUE NOT NULL, usuarioId BIGINT NOT NULL, listaTroca VARCHAR(500) NOT NULL, FOREIGN KEY (usuarioId) REFERENCES Usuario(usuarioId) ON DELETE CASCADE)"
      );
 
 
