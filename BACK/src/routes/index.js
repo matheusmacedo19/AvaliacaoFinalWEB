@@ -3,6 +3,8 @@ const router = express.Router();
 const user = require('../Controllers/usuario-controller');
 const produto = require('../Controllers/produto-controller');
 const upload = require("../services/multerConfig");
+const troca = require('../Controllers/troca-controller');
+const historico = require('../Controllers/historico-controller');
 
 
 //USUARIO
@@ -20,6 +22,18 @@ router.put("/produto/:id", produto.updateProductById);
 router.delete("/produto/:id", produto.removeProductById)
 
 //TROCA
+router.get("/trocas", troca.getExchanges);
+router.get("/troca/:id", troca.getExchangeById);
+router.post("/troca/",  troca.create);
+router.put("/troca/:id", troca.updateExchangeById);
+router.delete("/troca/:id", troca.removeExchangeById)
+
+//HISTORICO
+router.get("/historicos", historico.getHistorics);
+router.get("/historico/:id", historico.getHistoricById);
+router.post("/historico/",  historico.create);
+router.put("/historico/:id", historico.updateHistoricById);
+router.delete("/historico/:id", historico.removeHistoricById)
 
 
 module.exports = router;
