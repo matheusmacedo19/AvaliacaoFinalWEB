@@ -1,23 +1,21 @@
-const { Router } = require('express');
-const {getUserById, getUsers, create, updateUserById, removeUserById} = require('../Controllers/usuario-controller');
-//import {getUserById, getUsers, create, updateUserById, removeUserById} from '../Controllers/produto-controller';
-
-const routes = Router();
+const express = require("express");
+const router = express.Router();
+const user = require('../Controllers/usuario-controller');
+const produto = require('../Controllers/produto-controller');
 
 //USUARIO
-routes.get("/usuarios/", getUsers);
-routes.get("/usuario/:id", getUserById);
-routes.post("/usuario/", create);
-routes.put("/usuario/:id", updateUserById);
-routes.delete("/usuario/:id", removeUserById)
+router.get("/usuarios/", user.getUsers);
+router.get("/usuario/:id", user.getUserById);
+router.post("/usuario/", user.create);
+router.put("/usuario/:id", user.updateUserById);
+router.delete("/usuario/:id", user.removeUserById)
 
 //PRODUTO
-/*routes.get("/", getUsers);
-routes.get("/:id", getUserById);
-routes.post("/", create);
-routes.put("/:id", updateUserById);
-routes.delete("/:id", removeUserById)
-*/
+router.get("/produtos", produto.getProducts);
+router.get("/produto/:id", produto.getProductById);
+router.post("/produto/", produto.create);
+router.put("/produto/:id", produto.updateProductById);
+router.delete("/produto/:id", produto.removeProductById)
 
 
-module.exports = routes;
+module.exports = router;
