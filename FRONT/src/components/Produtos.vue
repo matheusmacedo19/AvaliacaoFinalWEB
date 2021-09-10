@@ -31,6 +31,9 @@
       <button type="button" @click="getProdutos()" class="btn btn-primary">
         Buscar Produtos
       </button>
+      <button>
+        Filtrar por nome 
+      </button>
       <div v-if="newProduto != null" style="width: 100%">
           <div
             style="

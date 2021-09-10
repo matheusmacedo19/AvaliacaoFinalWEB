@@ -24,27 +24,8 @@
       </div>
       <div class="form-group">
       </div>
-      <button type="button" @click="getUsuarioById()" class="btn btn-primary">
-       Logar
-      </button>
-      <div v-if="carro != null" style="width: 100%">
-        <div
-          style="
-            margin-top: 20px;
-            border: solid 1px;
-            border-color: #111;
-            padding-top: 13px;
-          "
-        >
-          <p>
-            <strong>ID: </strong> {{ carro.id }} <strong>Nome: </strong>
-            {{ Produto.nome }} <strong>Nome: </strong> {{ produto.nome }}
-            <strong>Ano de Frabicação: </strong> {{ produto.descricao }}
-            <strong>Ano do Modelo: </strong> {{ carro.anoModelo }}
-            <strong>Data de Venda: </strong> {{ carro.dataVenda }}
-          </p>
-        </div>
-      </div>
+       <br /><br />
+          <router-link class="home" to="/produtos"> Redirecionar</router-link>
     </form>
   </div>
   </div>
@@ -52,20 +33,13 @@
 
 <script>
 export default {
-  name: "BuscarProdutos",
+  name: "login",
   data() {
     return {
-      produto: null,
-      baseURI: "http://localhost:333/BACK/api/produtos",
-    };
+  }
   },
   methods: {
-    getAll() {
-      this.$http.get(this.baseURI + "/").then((result) => {
-        this.carro = result.data;
-      });
-    },
-  },
+  }
 };
 </script>
 

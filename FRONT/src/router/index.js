@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Login from "../components/Login.vue";
 import Usuario from "../components/Usuario.vue";
 import Produtos from "../components/Produtos.vue";
+import Trocas from "../components/Troca.vue";
 
 
 
@@ -30,6 +31,11 @@ const routes = [
     name: "Produtos",
     component: Produtos,
   },
+  {
+    path: "/trocas",
+    name: "Trocas",
+    component: Trocas,
+  }
 ];
 
 const router = new VueRouter({
