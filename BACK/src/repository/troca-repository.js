@@ -14,10 +14,10 @@ exports.getExchanges = async () => {
 exports.create = async (troca) => {
     
     const result = await db.query('INSERT INTO Troca (usuarioId1, usuarioId2, produtoIdUsuario1, produtoIdUsario2, valor) VALUES ($1, $2, $3, $4, $5) RETURNING *;', 
-    [troca.usuarioId1, troca.usuarioId2, troca.produtoIdUsuario1, troca.produtoIdUsuario2, valor]);
+    [troca.usuarioId1, troca.usuarioId2, troca.produtoIdUsuario1, troca.produtoIdUsuario2, troca.valor]);
     return result.rows[0];
 };
-
+ 
 exports.updateExchangeById = async (troca) => {
     
     const result = await db.query('UPDATE Troca SET usuarioId1 = $1, usuarioId2= $2, produtoIdUsuario1 = $3, produtoIdUsario2 = $4, valor = $5 WHERE trocaId = $6 RETURNING *;', 

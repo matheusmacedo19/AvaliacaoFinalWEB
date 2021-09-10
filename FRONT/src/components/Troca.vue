@@ -1,3 +1,5 @@
+<script>
+/*
 <template>
   <div class="troca">
     <h1>Cadastrar troca</h1>
@@ -72,6 +74,7 @@
               <strong>Usuario2: </strong> {{ newTroca.usuario2 }}
               <strong>Produto1: </strong>{{ newTroca.produto1 }} 
               <strong>Produto2: </strong>{{ newTroca.produto2 }}
+              <strong>Valor: </strong>{{newTroca.valor}}
             </p>
           </div>
         </div>
@@ -86,7 +89,7 @@ export default {
   name: "Usuario",
   data() {
     return {
-      usuario1: "1",
+      usuario1: "",
       usuario2: "",
       produto1: "",
       produto2: "",
@@ -97,23 +100,23 @@ export default {
   },
   methods: {
     postTroca() {
-      this.troca.usuario1 = this.usuario1;
-      this.troca.usuario2 = this.usuario2;
-      this.troca.produto1 = this.produto1;
+      this.troca.usuarioId1 = this.usuario1;
+      this.troca.usuarioId2 = this.usuario2;
+      this.troca.produtoIdUsuarios1 = this.produto1;
       this.troca.produto2 = this.produto2;
       this.troca.valor = this.valor;
-     
+     console.log(this.troca);
       api.post("troca", this.troca).then((result) => {
         this.newTroca = result.data;
       });
     }
   },
-};
+};*/
 </script>
 
 <style>
 .troca {
-  display: flex;
+    display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
