@@ -13,8 +13,8 @@ module.exports = {
     create: async (req, res) => {
         
         let foto = req.file ? `uploads/${req.file.originalname}` : '';
-        let produto = new Produto(req.body.usuarioId, req.body.nome, req.body.descricao, foto);
-
+        let produto = new Produto(req.body.usuarioId, req.body.nome, req.body.descricao, req.body.valor, foto);
+        console.log(produto);
         await produtoRepository.create(produto);
 
         res.json(produto);
@@ -22,7 +22,7 @@ module.exports = {
  
     updateProductById: async (req, res) => {
 
-        let produto = new Produto(req.body.usuarioId, req.body.nome, req.body.descricao);
+        let produto = new Produto(req.body.usuarioId, req.body.nome, req.body.descricao, req.body.valor);
         
         await produtoRepository.updateProductById(produto);
 

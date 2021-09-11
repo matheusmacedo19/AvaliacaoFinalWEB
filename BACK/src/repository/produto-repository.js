@@ -12,16 +12,16 @@ exports.getProducts = async () => {
 };
 
 exports.create = async (produto) => {
-    
-    const result = await db.query('INSERT INTO Produto (usuarioId, nome, descricao, foto) VALUES ($1, $2, $3, $4) RETURNING *;', 
-    [produto.usuarioId, produto.nome, produto.descricao, produto.foto]);
+    console.log(produto);
+    const result = await db.query('INSERT INTO Produto (usuarioId, nome, descricao, foto, valor) VALUES ($1, $2, $3, $4, $5) RETURNING *;', 
+    [produto.usuarioId, produto.nome, produto.descricao, produto.foto, produto.valor]);
     return result.rows[0];
 };
 
 exports.updateProductById = async (produto) => {
     
-    const result = await db.query('UPDATE Produto SET usuarioId = $1, nome= $2, descricao = $3, foto = $4 WHERE produtoId = $5 RETURNING *;', 
-    [produto.usuarioId, produto.nome, produto.descricao, produto.foto, produto.produtoId]);
+    const result = await db.query('UPDATE Produto SET usuarioId = $1, nome= $2, descricao = $3, foto = $4, valor = $5 WHERE produtoId = $6 RETURNING *;', 
+    [produto.usuarioId, produto.nome, produto.descricao, produto.foto, produto.valor, produto.produtoId]);
 
     return result.rows[0]
 };

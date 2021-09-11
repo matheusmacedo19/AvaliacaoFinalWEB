@@ -22,6 +22,16 @@
           placeholder="descricao"
         />
       </div>
+      <div class="form-group">
+        <label for="descricao">Valor</label>
+        <input
+          v-model="valor"
+          type="text"
+          class="form-control"
+          id="valor"
+          placeholder="valor"
+        />
+      </div>
       <label id="title_img"> Imagem </label>
       <input type="file" id="file" ref="file" name="image" /> <br /><br />
 
@@ -31,7 +41,6 @@
       <button type="button" @click="getProdutos()" class="btn btn-primary">
         Buscar Produtos
       </button>
-      <button>Filtrar por nome</button>
       <div v-if="newProduto != null" style="width: 100%">
         <div
           style="
@@ -44,7 +53,8 @@
           <strong>Cadastrado</strong>
           <p>
             <strong>Nome: </strong> {{ newProduto.nome }}
-            <strong>Endereco: </strong> {{ newProduto.descricao }}
+            <strong>Descrição: </strong> {{ newProduto.descricao }}
+            <strong>Valor: </strong> {{ newProduto.valor }}
           </p>
         </div>
       </div>
@@ -60,6 +70,7 @@
         <p>
           <strong>Nome: </strong>{{ produto.nome }}
           <strong>Descrição: </strong> {{ produto.descricao }}
+          <strong>Valor: </strong> {{ produto.valor }}
         </p>
       </div>
     </form>
@@ -75,6 +86,7 @@ export default {
       usuarioId: "",
       nome: "",
       descricao: "",
+      valor:"",
       produto: {},
       produtos:[],
       newProduto: null,
@@ -86,6 +98,7 @@ export default {
       this.produto.usuarioId = JSON.parse(sessionStorage.getItem("usuario")).usuarioid;
       this.produto.nome = this.nome;
       this.produto.descricao = this.descricao;
+      this.produto.valor = this.valor;
 
       api.post("produto", this.produto).then((Response) => {
         this.produtos.push(Response.data);
