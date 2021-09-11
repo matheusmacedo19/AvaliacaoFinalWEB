@@ -23,7 +23,7 @@
         />
       </div>
       <label id="title_img"> Imagem </label>
-      <input type="file" id="file" ref="file" name="image"/> <br /><br />
+      <input type="file" id="file" ref="file" name="image" /> <br /><br />
 
       <button type="button" @click="postProduto()" class="btn btn-primary">
         Cadastrar Produto
@@ -31,26 +31,24 @@
       <button type="button" @click="getProdutos()" class="btn btn-primary">
         Buscar Produtos
       </button>
-      <button>
-        Filtrar por nome 
-      </button>
+      <button>Filtrar por nome</button>
       <div v-if="newProduto != null" style="width: 100%">
-          <div
-            style="
-              margin-top: 20px;
-              border: solid 1px;
-              border-color: #111;
-              padding-top: 13px;
-            "
-          >
-            <strong>Cadastrado</strong>
-            <p>
-              <strong>Nome: </strong> {{ newProduto.nome }}
-              <strong>Endereco: </strong> {{ newProduto.descricao }}
-            </p>
-          </div>
+        <div
+          style="
+            margin-top: 20px;
+            border: solid 1px;
+            border-color: #111;
+            padding-top: 13px;
+          "
+        >
+          <strong>Cadastrado</strong>
+          <p>
+            <strong>Nome: </strong> {{ newProduto.nome }}
+            <strong>Endereco: </strong> {{ newProduto.descricao }}
+          </p>
         </div>
-    <div
+      </div>
+      <div
         style="
           margin-top: 20px;
           border: solid 1px;
@@ -61,7 +59,7 @@
         :key="produto.id"
       >
         <p>
-          <strong>Nome: </strong>{{ produto.nome }} 
+          <strong>Nome: </strong>{{ produto.nome }}
           <strong>Descrição: </strong> {{ produto.descricao }}
         </p>
       </div>
@@ -75,27 +73,33 @@ export default {
   name: "Produtos",
   data() {
     return {
-      usuarioId: "1",
+      usuarioId: "",
       nome: "",
       descricao: "",
       produto: {},
-      produtos: {},
+      produtos:{},
       newProduto: null,
     };
   },
   methods: {
     postProduto() {
-      this.produto.usuarioId = this.usuarioId;
-      this.produto.nome = this.nome;
+      this.produto.usuarioId = JSON.parse(sessionStorage.getItem("usuario")).usuarioId;
+      this.produto.nome = this.nome,
       this.produto.descricao = this.descricao;
-      console.log(this.produto);
-      api.post("produto", this.produto).then((result) => {
-        this.newProduto = result.data;
+
+      api.post("produto", this.produto).then((Response) => {
+        this.produtos.push(Response.data);
       });
     },
     getProdutos() {
-      api.get("produtos").then((result) => {
-        this.produtos = result.data;
+      var usuario = JSON.parse(sessionStorage.getItem("usuario"));
+
+      api.get("produtos").then((Response) => {
+        Response.data.forEach((element) => {
+          if (element.usuarioId == usuario.usuarioId) {
+            this.produtos.push(element);
+          }
+        });
       });
     },
   },

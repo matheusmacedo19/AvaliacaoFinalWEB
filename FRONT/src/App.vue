@@ -1,15 +1,40 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/Login">login</router-link> |
-      <router-link to="/usuario">Usuarios</router-link> |
-      <router-link to="/Produtos">Produtos</router-link> |
-      <router-link to="/trocas">Trocas</router-link> |
+      <router-link to="/loginvue">login |</router-link> 
+      <router-link to="/usuario">Usuarios |</router-link> 
+      <router-link v-if ="logged" to="/produtos">Produtos |</router-link> 
+      <router-link v-if="logged" to="/trocas">Trocas |</router-link> 
       <router-link to="/">About</router-link> 
+
     </div>
     <router-view />
   </div>
 </template>
+
+<script>
+export default {
+  name: "Login",
+  data() {
+    return {
+      logged: false,
+    };
+  },
+  methods: {
+    logout() {
+      axios.get("http://localhost:3333/users/logout").then((result) => {
+        this.logged = false;
+        localStorage.removeItem("usuario");
+      });
+    },
+  },
+  created() {
+    if (localStorage.getItem("usuario")) {
+      this.logged = true;
+    }
+  },
+};
+</script>
 
 <style>
 #app {
