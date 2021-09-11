@@ -17,7 +17,7 @@ router.post("/login", async (req, res) => {
 
     res
       .status(200)
-      .cookie("usuarioId", result.rows[0].id, {
+      .cookie("usuarioId", result.rows[0].usuarioid, {
         secure: false,
       })
       .json(result.rows[0]);

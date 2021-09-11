@@ -4,32 +4,32 @@
           <h1>login</h1>
           <br />
 
-          <label class="label-input" for="">
-            <input
-              type="text"
-              id="email"
-              name="email"
-              v-model="email"
-              placeholder="email"
-              autofocus
-            />
-          </label>
+          <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          v-model="email"
+          type="text"
+          class="form-control"
+          id="eemail"
+          placeholder="Email"
+        />
+      </div>
+      <div class="form-group">
+        <label for="endereco">Senha</label>
+        <input
+          v-model="senha"
+          type="password"
+          class="form-control"
+          id="senha"
+          placeholder="senha"
+        />
+      </div>
 
-          <label class="label-input" for="">
-            <input
-              type="password"
-              id="senha"
-              name="senha"
-              v-model="senha"
-              placeholder="Senha"
-            />
-          </label>
-
-          <button type="submit" class="btnEntrar" id="login">Entrar</button>
+          <button type="button" @click="logar()" class="btnEntrar"  id="login">Entrar</button>
 
           <br /><br />
 
-          <router-link class="cadastroConta" to="/usuario"
+          <router-link class="cadastroUsuario" to="/usuario"
             >Não tem login ? Cadastre-se aqui</router-link
           >
           <br /><br />
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+const api = require("../services/api");
 export default {
   name: "Login",
   data() {
@@ -50,7 +51,7 @@ export default {
   },
   methods: {
     logar: function() {
-      axios
+      api
         .post(
           this.baseLogin,
           {
@@ -62,7 +63,7 @@ export default {
         .then((result) => {
           let usuarioId = this.getCookie("usuarioId");
           if (usuarioId) {
-            localStorage.setItem("usuario", JSON.stringify(result.data));
+            sessionStorage.setItem("usuario", JSON.stringify(result.data));
           }
           this.$router.go();
         });

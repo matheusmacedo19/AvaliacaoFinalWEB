@@ -55,8 +55,7 @@
           border-color: #111;
           padding-top: 13px;
         "
-        v-for="produto in produtos"
-        :key="produto.id"
+        v-for="produto in produtos" :key="produto.id"
       >
         <p>
           <strong>Nome: </strong>{{ produto.nome }}
@@ -77,14 +76,15 @@ export default {
       nome: "",
       descricao: "",
       produto: {},
-      produtos:{},
+      produtos:[],
       newProduto: null,
     };
   },
   methods: {
     postProduto() {
-      this.produto.usuarioId = JSON.parse(sessionStorage.getItem("usuario")).usuarioId;
-      this.produto.nome = this.nome,
+      
+      this.produto.usuarioId = JSON.parse(sessionStorage.getItem("usuario")).usuarioid;
+      this.produto.nome = this.nome;
       this.produto.descricao = this.descricao;
 
       api.post("produto", this.produto).then((Response) => {
@@ -96,8 +96,9 @@ export default {
 
       api.get("produtos").then((Response) => {
         Response.data.forEach((element) => {
-          if (element.usuarioId == usuario.usuarioId) {
+          if (element.usuarioid == usuario.usuarioid) {
             this.produtos.push(element);
+            console.log(this.produtos);
           }
         });
       });

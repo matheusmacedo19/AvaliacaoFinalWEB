@@ -15,6 +15,8 @@ app.use(cors({ credentials: true, origin: true }));
 
 app.use(cookieParser());
 
+app.use(express.static("public"));
+
 app.use(sessions({
     secret: process.env.SECRET,
     saveUninitialized: true,

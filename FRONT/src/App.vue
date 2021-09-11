@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/loginvue">login |</router-link> 
+      <router-link to="/loginvue">Login |</router-link> 
       <router-link to="/usuario">Usuarios |</router-link> 
-      <router-link v-if ="logged" to="/produtos">Produtos |</router-link> 
+      <router-link v-if="logged" to="/produtos">Produtos |</router-link> 
       <router-link v-if="logged" to="/trocas">Trocas |</router-link> 
-      <router-link to="/">About</router-link> 
+      <router-link to="/">About |</router-link> 
+      <a v-if="logged" href="/loginvue" @click="logout()">Logout</a>
 
     </div>
     <router-view />
@@ -13,6 +14,7 @@
 </template>
 
 <script>
+const api = require("./services/api")
 export default {
   name: "Login",
   data() {
@@ -22,14 +24,15 @@ export default {
   },
   methods: {
     logout() {
-      axios.get("http://localhost:3333/users/logout").then((result) => {
+      api.get("http://localhost:3333/users/logout").then((result) => {
         this.logged = false;
-        localStorage.removeItem("usuario");
+        console.log(this.logged);
+        sessionStorage.removeItem("usuario");
       });
     },
   },
   created() {
-    if (localStorage.getItem("usuario")) {
+    if (sessionStorage.getItem("usuario")) {
       this.logged = true;
     }
   },
